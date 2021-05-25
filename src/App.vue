@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <div class="container text-center mt-3">
-      <h1>Vue Dischi</h1>
+    <div class="top mb-5">
+      <img src="./assets/img/logo-small.svg" alt="" />
+    </div>
 
+    <div class="container text-center mt-3">
       <div class="row">
         <Song v-for="(song, index) in songs" :key="index" :song="song" />
       </div>
@@ -30,8 +32,8 @@ export default {
   created() {
     axios
       .get("https://flynn.boolean.careers/exercises/api/array/music")
-      .then((res) => {
-        this.songs = res.data;
+      .then((response) => {
+        this.songs = response.data.response;
       })
       .catch((err) => {
         console.log(err);
@@ -42,4 +44,25 @@ export default {
 
 <style lang="scss">
 @import "@/assets/style/general.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(30, 45, 59);
+}
+
+.top {
+  width: 100%;
+  height: 50px;
+  padding: 5px;
+  background-color: rgb(46, 58, 70);
+
+  img {
+    width: 35px;
+  }
+}
 </style>
